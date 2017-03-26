@@ -15,15 +15,17 @@ function getClasses(e, n, regex) {
 }
 
 // inherits classes based on "-"
-while ($(':regex(class,(^-)|( -))').length) {
-    $(':regex(class,(^-)|( -))').each(function() {
+var x = ':regex(class,(^-)|( -))';
+while ($(x).length) {
+    $(x).each(function() {
         $(this).children().not('.no-').addClass(getClasses($(this), 1, /^-/));
     });
 }
 
 // remove classes that starts with "no-"
-while ($(':regex(class,(^no-)|( no-))').length) {
-    $(':regex(class,(^no-)|( no-))').each(function() {
+var y = ':regex(class,(^no-)|( no-))';
+while ($(y).length) {
+    $(y).each(function() {
         $(this).removeClass(getClasses($(this), 3, /^no-/));
     });
 }
