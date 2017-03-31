@@ -2,30 +2,31 @@
 // https://gist.github.com/fny/1887398
 // credits to James Padolsey for the plugin
 
-// get classes based on condition
-function getClasses(e, n, regex) {
-    var classes = "";
+//self invoking function
+(function() {
+  // get classes based on condition
+  function get(e, n = 1, r = /^-/) {
+    var c = '';
     e.attr('class').split(' ').forEach(function(f) {
-        if (f.match(regex)) {
-            classes += f.substring(n) + " ";
-            e.removeClass(f);
-        }
+      if (f.match(r)) {
+        c += f.substring(n) + ' ';
+        e.removeClass(f);
+      }
     });
-    return classes;
-}
-
-// inherits classes based on "-"
-var x = ':regex(class,(^-)|( -))';
-while ($(x).length) {
+    return c;
+  }
+  var x = ':regex(class,[ ^]-)',
+      y = ':regex(class,(^no-)|( no-))';
+  // inherits classes based on "-"
+  while ($(x).length) {
     $(x).each(function() {
-        $(this).children().not('.no-').addClass(getClasses($(this), 1, /^-/));
+      $(this).children().not('.no-').addClass(get($(this)));
     });
-}
-
-// remove classes that starts with "no-"
-var y = ':regex(class,(^no-)|( no-))';
-while ($(y).length) {
-    $(y).each(function() {
-        $(this).removeClass(getClasses($(this), 3, /^no-/));
-    });
-}
+  }
+  // remove classes that starts with "no-"
+  $(y).each(function() {
+    $(this).removeClass(get($(this), 3, /^no-/));
+  });
+  // remove all empty class attributes
+  $('*[class=""]').removeAttr('class');
+})();
