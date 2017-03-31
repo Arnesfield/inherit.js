@@ -5,7 +5,7 @@
 //self invoking function
 (function() {
   // get classes based on condition
-  function get(e, n = 1, r = /^-/) {
+  function get(e, n, r) {
     var c = '';
     e.attr('class').split(' ').forEach(function(f) {
       if (f.match(r)) {
@@ -20,7 +20,7 @@
   // inherits classes based on "-"
   while ($(x).length) {
     $(x).each(function() {
-      $(this).children().not('.no-').addClass(get($(this)));
+      $(this).children().not('.no-').addClass(get($(this), 1, /^-/));
     });
   }
   // remove classes that starts with "no-"
