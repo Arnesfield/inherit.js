@@ -14,33 +14,35 @@ Inherit.js uses the Regex Selector to query elements based on some expression.
 
 #### The code
 ```javascript
-// get classes based on condition
-function getClasses(e, n, regex) {
-    var classes = "";
+//self invoking function
+(function() {
+  // get classes based on condition
+  function get(e, n, r) {
+    var c = '';
     e.attr('class').split(' ').forEach(function(f) {
-        if (f.match(regex)) {
-            classes += f.substring(n) + " ";
-            e.removeClass(f);
-        }
+      if (f.match(r)) {
+        c += f.substring(n) + ' ';
+        e.removeClass(f);
+      }
     });
-    return classes;
-}
-
-// inherits classes based on "-"
-var x = ':regex(class,(^-)|( -))';
-while ($(x).length) {
+    return c;
+  }
+  var x = ':regex(class,[ ^]-)',
+      y = ':regex(class,(^no-)|( no-))';
+  // inherits classes based on "-"
+  while ($(x).length) {
     $(x).each(function() {
-        $(this).children().not('.no-').addClass(getClasses($(this), 1, /^-/));
+      $(this).children().not('.no-').addClass(get($(this), 1, /^-/));
     });
-}
+  }
+  // remove classes that starts with "no-"
+  $(y).each(function() {
+    $(this).removeClass(get($(this), 3, /^no-/));
+  });
+  // remove all empty class attributes
+  $('*[class=""]').removeAttr('class');
+})();
 
-// remove classes that starts with "no-"
-var y = ':regex(class,(^no-)|( no-))';
-while ($(y).length) {
-    $(y).each(function() {
-        $(this).removeClass(getClasses($(this), 3, /^no-/));
-    });
-}
 ```
 
 ## Usage
@@ -60,7 +62,7 @@ In order to use, simple append a hyphen (-) before a class.
 ```
 This will be equivalent to the following:
 ```html
-<div class>
+<div>
   <h1 class="some">inherit</h1>
 </div>
 ```
@@ -130,14 +132,12 @@ And here's the result:
   <div class="col">
     <div class="some"></div>
   </div>
-  <div class>
+  <div>
     <div></div>
   </div>
 </div>
 ```
 The element with the **no-** class and its children was not affected by the class passing.
-
- The class with the **no-** class still has the **class** attribute that can be seen in Chrome's inspect element tool. (hopefully this won't cause much problems).
 
 Elements with **no-** class can have other classes, too. They can also pass classes to their children.
 ```html
@@ -151,9 +151,9 @@ Elements with **no-** class can have other classes, too. They can also pass clas
 ```
 This will result to the following:
 ```html
-<div class>
+<div>
   <div class="some"></div>
-  <div class>
+  <div>
     <div class="some"></div>
     <div class="some"></div>
   </div>
@@ -184,7 +184,7 @@ The **no-CLASS** class also applies even without class passing.
 ```
 Will result to:
 ```html
-<div class></div>
+<div></div>
 ```
 But doing it this way is quite inefficient.
 ## Note
