@@ -15,7 +15,7 @@
     });
     return c;
   }
-  var x = ':regex(class,[ ^]-)',
+  var x = ':regex(class,(^-)|( -))',
       y = ':regex(class,(^no-)|( no-))';
   // inherits classes based on "-"
   while ($(x).length) {
