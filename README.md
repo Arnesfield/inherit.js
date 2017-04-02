@@ -28,7 +28,7 @@ Inherit.js uses the Regex Selector to query elements based on some expression.
     return c;
   }
   
-  var x = ':regex(class,[ ^]-)',
+  var x = ':regex(class,(^-)|( -))',
       y = ':regex(class,(^no-)|( no-))';
   
   // inherits classes based on "-"
