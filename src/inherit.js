@@ -1,10 +1,10 @@
-/* inherit.js v1.1 | Jefferson Rylee - https://github.com/Arnesfield/inherit.js | Free */
+/* inherit.js v1.2 | Jefferson Rylee - https://github.com/Arnesfield/inherit.js | Free */
 
 // inherit.js requires jQuery and the Regex Selector for jQuery by James Padolsey
 // https://gist.github.com/fny/1887398
 
-//self invoking function
-(function() {
+// on ready
+$(function() {
   // get classes based on condition
   function get(e, n, r) {
     var c = '';
@@ -34,4 +34,4 @@
   
   // remove all empty class attributes
   $('*[class=""]').removeAttr('class');
-})();
+})
