@@ -14,8 +14,8 @@ Inherit.js uses the Regex Selector to query elements based on some expression.
 
 #### The code
 ```javascript
-//self invoking function
-(function() {
+// on ready
+$(function() {
   // get classes based on condition
   function get(e, n, r) {
     var c = '';
@@ -45,13 +45,13 @@ Inherit.js uses the Regex Selector to query elements based on some expression.
   
   // remove all empty class attributes
   $('*[class=""]').removeAttr('class');
-})();
+})
 
 ```
 
 ## Usage
 ### Add scripts
-Add the requirements before the closing of the **body** tag.
+Add the required scripts either before the closing of the **body** tag or inside the **head**.
 ```html
 <script src="/path/to/jquery.js"></script>
 <script src="/path/to/jquery.regex-selector.js"></script>
