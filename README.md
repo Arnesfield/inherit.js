@@ -1,72 +1,23 @@
 # inherit.js
 Simple JavaScript tool for CSS to inherit (pass) classes from a parent to its children.
 
-<<<<<<< HEAD
 ## v2.0 Highlights
 - Regex Selector for jQuery has been removed.
 - Customize how you pass classes.
 
 ## Introduction
 By default, inherit.js uses hyphens (-) on classes in order for it to work.
-=======
-## Introduction
-Inherit.js uses hyphens (-) on classes in order for it to work.
->>>>>>> master
 
 You won't need to repeat classes everytime. Inherit.js will do the work for you.
 
 #### Requirements
 - jQuery
-<<<<<<< HEAD
-=======
-- [Regex Selector for jQuery by James Padolsey](https://gist.github.com/fny/1887398)
-
-Inherit.js uses the Regex Selector to query elements based on some expression.
-
-#### The code
-```javascript
-// on ready
-$(function() {
-  // get classes based on condition
-  function get(e, n, r) {
-    var c = '';
-    e.attr('class').split(' ').forEach(function(f) {
-      if (f.match(r)) {
-        c += f.substring(n) + ' ';
-        e.removeClass(f);
-      }
-    });
-    return c;
-  }
-  
-  var x = ':regex(class,(^-)|( -))',
-      y = ':regex(class,(^no-)|( no-))';
-  
-  // inherits classes based on "-"
-  while ($(x).length) {
-    $(x).each(function() {
-      $(this).children().not('.no-').addClass(get($(this), 1, /^-/));
-    });
-  }
-  
-  // remove classes that starts with "no-"
-  $(y).each(function() {
-    $(this).removeClass(get($(this), 3, /^no-/));
-  });
-  
-  // remove all empty class attributes
-  $('*[class=""]').removeAttr('class');
-})
-
-```
->>>>>>> master
 
 ## Usage
 ### Add scripts
 Add the required scripts either before the closing of the **body** tag or inside the **head**.
 ```html
 <script src="/path/to/jquery.js"></script>
-<<<<<<< HEAD
 <script src="/path/to/inherit.js"></script>
 ```
 ### Using *inherit.js*
@@ -86,12 +37,6 @@ Setting these parameters are optional.
 In the upcoming examples, we will use the default parameters of inherit.js.
 
 #### Discussion
-=======
-<script src="/path/to/jquery.regex-selector.js"></script>
-<script src="/path/to/inherit.js"></script>
-```
-### Using *inherit.js*
->>>>>>> master
 In order to use, simply append a hyphen (-) before a class.
 ```html
 <!-- before -->
